@@ -15,6 +15,9 @@
 #define LED_BLUE 6
 #define KEY1_PIN 9
 #define KEY2_PIN 8
+#define BUTTONK1 8
+#define BUTTONK2 9
+
 
 
 TM1637 disp(CLK,DIO);
@@ -28,6 +31,8 @@ void setup()
 	Serial.begin(9600)
 	pinMode (LED_BLUE,OUTPUT);
 	pinMode (LED_GREEN,OUTPUT);
+	pinMode (BUTTONK1,INPUT_PULLUP);
+	pinMode(BUTTONK2,INPUT_PULLUP);
 	disp.init();
 	disp.display(count);
 }
@@ -36,39 +41,70 @@ void loop()
 {
         digitalWrite(LED_BLUE,LOW);
         digitalWrite(LED_GREEN,LOW);
-	float current_humidity ;
-	current_humidity = dht.readHumidity();
-        float current_temp;
-	current_humidity= dht.readTemperature();
-		
+        float h = dht.readHumidity();
+        float t = dht.readTemperature();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void displayTemperature(int8_t temperature)
+{
+  int8_t temp[4];
+  if(temperature < 0)
+	{
+		temp[0] = INDEX_NEGATIVE_SIGN;
+		temperature = abs(temperature);
+	}
+	else if(temperature < 100)temp[0] = INDEX_BLANK;
+	else temp[0] = temperature/100;
+	temperature %= 100;
+	temp[1] = temperature / 10;
+	temp[2] = temperature % 10;
+	temp[3] = 12;	          //index of 'C' for celsius degree symbol.
+	disp.display(temp);
 }
 
-void displayTemperature(init8_t temperature)
+void displayHumidity(int8_t humi)
 {
-   init8_t temp[];
-if (temperature >=25)
-{
-  
+  int8_t temp[4];
+  if(humi < 100)temp[0] = INDEX_BLANK;
+  else temp[0] = humi/100;
+  humi %= 100;
+  temp[1] = humi / 10;
+  temp[2] = humi % 10;
+  temp[3] = 18;	          //index of 'H' for celsius degree symbol.
+  disp.display(temp);
 }
-else 
-{
 
-  display (--)
+void displayError()
+{
+  disp.display(3,14);//display "E"
 }
-
-void displayHumidity( init8_t humidity)
-{
- init8_t temp[];
-if (humidity >= 70)
-{
-turn on dehimidifier 
-turn on light 
-display current humidity on 4 bit display
-else
-{ 
-	display(--)
-
-}
+	
+	
 
 
 
