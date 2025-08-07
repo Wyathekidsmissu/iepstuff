@@ -28,6 +28,7 @@ void setup()
 	Serial.begin(9600)
 	pinMode (LED_BLUE,OUTPUT);
 	pinMode (LED_GREEN,OUTPUT);
+	disp.init();
 	disp.display(count);
 }
 
@@ -35,15 +36,42 @@ void loop()
 {
         digitalWrite(LED_BLUE,LOW);
         digitalWrite(LED_GREEN,LOW);
-	float current_humidity = dht.readHumidity();
-        float current_temp = dht.readTemperature();
-
-	int keynum;
-	keynum=key.get();
-	if(keynum==1)
-	{
+	float current_humidity ;
+	current_humidity = dht.readHumidity();
+        float current_temp;
+	current_humidity= dht.readTemperature();
 		
 }
 
-int target_Humidity= 50 ;
-int target_Temp=25;
+void displayTemperature(init8_t temperature)
+{
+   init8_t temp[];
+if (temperature >=25)
+{
+  
+}
+else 
+{
+
+  display (--)
+}
+
+void displayHumidity( init8_t humidity)
+{
+ init8_t temp[];
+if (humidity >= 70)
+{
+turn on dehimidifier 
+turn on light 
+display current humidity on 4 bit display
+else
+{ 
+	display(--)
+
+}
+
+
+
+
+
+
