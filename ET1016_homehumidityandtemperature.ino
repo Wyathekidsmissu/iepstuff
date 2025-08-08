@@ -39,32 +39,23 @@ void setup()
 
 void loop()
 {
-        digitalWrite(LED_BLUE,LOW);
-        digitalWrite(LED_GREEN,LOW);
-        float h = dht.readHumidity();
-        float t = dht.readTemperature();
+        digitalWrite(LED_BLUE,LOW); // blue led off 
+        digitalWrite(LED_GREEN,LOW);//green led off
+        float h = dht.readHumidity(); //reading humidity sensor
+        float t = dht.readTemperature();// reading temperature sensor
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	if(digitalRead BUTTONK1 == 0 )
+	{
+	  uint8_t dash = 0x40;
+	  display.setSegments((uint8_t[]){dash, dash, dash, dash});
+	}
+	else 
+	{ 
+	  displayTemperature((int8_t)t);//display temperature
+          delay(3000);
+	}
+		
+}
 
 
 
