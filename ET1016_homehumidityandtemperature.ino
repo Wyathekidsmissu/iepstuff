@@ -11,6 +11,7 @@
 
 #define CLK 10
 #define DIO 11
+#define PassiveBuzzerPin 3
 #define LED_GREEN 5
 #define LED_BLUE 6
 #define KEY1_PIN 9
